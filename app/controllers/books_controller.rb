@@ -2,7 +2,8 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show update destroy ]
   
   def index
-    @books = Book.all
+    @books = Book.all.order("created_at DESC")
+
   end
 
   
@@ -11,7 +12,7 @@ class BooksController < ApplicationController
 
   
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.build(book_params)
 
     if @book.save
       render :show, status: :created, location: @book
