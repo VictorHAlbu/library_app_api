@@ -1,6 +1,12 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
+  protected
+    
+  def configure_sing_up_params
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  end
+
   private
 
   def respond_with(resource, _opts = {})
