@@ -1,23 +1,20 @@
 class ReviewsController < ApplicationController
-	before_action :find_book
-	before_action :find_review, only: [:edit, :update, :destroy]
+	before_action :set_book
+	before_action :set_review, only: [:show, :edit, :update, :destroy]
  
   def index 
-    reviews = Review.all
+    @reviews = @book.reviews.order(created_at: :desc)
     render json: @reviews
-  end
+	end
 
-	def new
-		@review = Review.new
+	def show
+		render json: @review
 	end
 
 	def create
-		@review = Review.new(review_params)
-		@review.book_id = @book.id
-		@review.user_id = current_user.id
-
+		@review = @book.reviews.build(review_params)
 		if @review.save
-			render :show, status: :created, location: @review
+			render status: :created, json: @review
 		else
       render json: @review.errors, status: :unprocessable_entity
 		end
@@ -41,14 +38,14 @@ class ReviewsController < ApplicationController
 	private
 
   def review_params
-    params.require(:review).permit(:book_id,:rating, :comment)
-  end
+    params.require(:review).permit(:book_id, :rating, :comment)
+	end
 
-  def find_book
-    @book = Book.find(params[:book_id])
-  end
+	def set_book
+		@book = Book.find(params[:book_id])
+	end
 
-  def find_review
+  def set_review
     @review = Review.find(params[:id])
   end
 

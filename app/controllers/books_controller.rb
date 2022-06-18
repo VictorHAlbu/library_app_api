@@ -3,16 +3,15 @@ class BooksController < ApplicationController
   
   def index
     @books = Book.all.order("created_at DESC")
-
   end
 
   
   def show
+
   end
 
-  
   def create
-    @book = current_user.books.build(book_params)
+    @book = current_user.books.new(book_params)
 
     if @book.save
       render :show, status: :created, location: @book
@@ -41,6 +40,6 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :genre)
+      params.require(:book).permit(:title, :author, :genre,:user_id)
     end
 end
