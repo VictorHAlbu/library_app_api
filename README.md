@@ -2,6 +2,8 @@
 Essa aplicação é uma Api de uma Blibioteca onde um usuário deve se cadastrar fazer login e assim conseguir cadastrar livros.<br>
 Uma outra caracterisca da Api é que os livros podem recebecer avaliações sobre o mesmo com nota e comentario e assim ter uma media para que os usuários possam vizualizar sua avaliação.
 
+Link Heroku https://library-app-vh.herokuapp.com/
+
 Obs: Essa api usa Autenticação com JWT
 
 # Tecnologias
