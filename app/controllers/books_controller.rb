@@ -11,11 +11,12 @@ class BooksController < ApplicationController
 
   
   def show
+   render json: @book
   end
 
   def create
     @book = current_user.books.new(book_params)
-    
+
     if @book.save
       render :show, status: :created, location: @book
     else
