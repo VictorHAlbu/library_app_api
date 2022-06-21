@@ -1,5 +1,5 @@
 # Library App API
-Essa aplicação é uma Api de uma Blibioteca onde um usuário deve se cadastrar fazer login e assim conseguir cadastras livros.<br>
+Essa aplicação é uma Api de uma Blibioteca onde um usuário deve se cadastrar fazer login e assim conseguir cadastrar livros.<br>
 Uma outra caracterisca da Api é que os livros podem recebecer avaliações sobre o mesmo com nota e comentario e assim ter uma media para que os usuários possam vizualizar sua avaliação.
 
 Obs: Essa api usa Autenticação com JWT
