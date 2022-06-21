@@ -6,6 +6,7 @@ gem 'rack-cors'
 gem 'devise'
 gem 'devise-jwt'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'sixarm_ruby_unaccent'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
