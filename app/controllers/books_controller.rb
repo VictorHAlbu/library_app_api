@@ -2,17 +2,20 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show update destroy ]
   
   def index
-    @books = Book.all.order("created_at DESC")
+    @books = Book
+    .search(search_params, params[:search])
+    .order(id: :desc)
+
+    render json: @books
   end
 
   
   def show
-
   end
 
   def create
     @book = current_user.books.new(book_params)
-
+    
     if @book.save
       render :show, status: :created, location: @book
     else
@@ -35,11 +38,16 @@ class BooksController < ApplicationController
   end
 
   private
+
     def set_book
       @book = Book.find(params[:id])
     end
 
     def book_params
       params.require(:book).permit(:title, :author, :genre,:user_id)
+    end
+
+    def search_params
+      ["books.title", "books.author", "books.genre"]
     end
 end
